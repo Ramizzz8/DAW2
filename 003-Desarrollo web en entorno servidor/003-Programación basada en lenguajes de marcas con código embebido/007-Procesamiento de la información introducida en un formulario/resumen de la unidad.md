@@ -1,0 +1,1 @@
+Explicacion de formularios y sus metodos de recopilacion de informacion en html (metodos, GET y POST).

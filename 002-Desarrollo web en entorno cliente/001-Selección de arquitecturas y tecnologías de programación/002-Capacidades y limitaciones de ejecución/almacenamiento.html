@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LocalStorage</title>
+</head>
+
+<body>
+
+    <h1>Guardar información en el navegador</h1>
+
+    <input
+        type="text"
+        id="nombre"
+        placeholder="Escribe tu nombre"
+    >
+
+    <input
+        type="number"
+        id="edad"
+        placeholder="Escribe tu edad"
+    >
+
+    <input
+        type="date"
+        id="fechaNacimiento"
+    >
+
+    <button onclick="guardarNombre()">
+        Guardar
+    </button>
+
+    <button onclick="mostrarNombre()">
+        Recuperar
+    </button>
+
+    <button onclick="borrarNombre()">
+        Borrar
+    </button>
+
+    <p id="resultado"></p>
+
+    <script>
+
+        function guardarNombre() {
+
+            const nombre =
+                document.getElementById("nombre").value;
+
+            localStorage.setItem("nombre", nombre);
+
+            localStorage.setItem(
+                "edad",
+                document.getElementById("edad").value
+            );
+
+            localStorage.setItem(
+                "fechaNacimiento",
+                document.getElementById("fechaNacimiento").value
+            );
+
+        }
+
+
+        function mostrarNombre() {
+
+            const nombre =
+                localStorage.getItem("nombre");
+
+            const edad =
+                localStorage.getItem("edad");
+
+            const fechaNacimiento =
+                localStorage.getItem("fechaNacimiento");
+
+            document.getElementById("resultado").textContent =
+                "Nombre almacenado: " + nombre +
+                " | Edad: " + edad +
+                " | Fecha de nacimiento: " + fechaNacimiento;
+
+        }
+
+
+        function borrarNombre() {
+
+            localStorage.removeItem("nombre");
+            localStorage.removeItem("edad");
+            localStorage.removeItem("fechaNacimiento");
+
+            document.getElementById("resultado").textContent =
+                "Información eliminada";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

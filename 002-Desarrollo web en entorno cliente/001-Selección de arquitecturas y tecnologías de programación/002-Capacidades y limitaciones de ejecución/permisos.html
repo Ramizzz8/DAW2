@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Comprobar Valencia</title>
+</head>
+
+<body>
+
+    <h1>Comprobar coordenadas</h1>
+
+    <input id="latitud" step="any" placeholder="Latitud">
+    <br></br>
+    <input id="longitud" step="any" placeholder="Longitud">
+    <br></br>
+    <button onclick="comprobar()">Comprobar</button>
+
+    <p id="resultado"></p>
+
+    <button onclick="obtenerUbicacion()">
+        Obtener mi ubicación
+    </button>
+
+    <script>
+
+        const latitudValencia = 39.4699;
+        const longitudValencia = -0.3763;
+
+        function comprobar() {
+
+            const latitud = Number(document.getElementById("latitud").value);
+            const longitud = Number(document.getElementById("longitud").value);
+
+            if (
+                latitud >= 39.40 && latitud <= 39.55 &&
+                longitud >= -0.45 && longitud <= -0.30
+            ) {
+                document.getElementById("resultado").textContent =
+                    "Las coordenadas están en Valencia.";
+            } else {
+                document.getElementById("resultado").textContent =
+                    "Las coordenadas no están en Valencia.";
+            }
+        }
+
+        
+        function obtenerUbicacion() {
+
+            const resultado =
+                document.getElementById("resultado");
+
+            if (!navigator.geolocation) {
+
+                resultado.textContent =
+                    "El navegador no dispone de geolocalización.";
+
+                return;
+
+            }
+
+            resultado.textContent =
+                "Solicitando ubicación...";
+
+            navigator.geolocation.getCurrentPosition(
+
+                function (posicion) {
+
+                    resultado.textContent =
+                        "Latitud: " +
+                        posicion.coords.latitude +
+                        " | Longitud: " +
+                        posicion.coords.longitude;
+
+                },
+
+                function () {
+
+                    resultado.textContent =
+                        "No se ha podido obtener la ubicación.";
+
+                }
+
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
